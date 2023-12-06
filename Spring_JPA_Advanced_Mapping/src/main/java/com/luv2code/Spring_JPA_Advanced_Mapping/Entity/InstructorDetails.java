@@ -3,7 +3,7 @@ package com.luv2code.Spring_JPA_Advanced_Mapping.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="instructor_details")
+@Table(name="instructor_detail")
 public class InstructorDetails {
 
     /*Defining Fields*/

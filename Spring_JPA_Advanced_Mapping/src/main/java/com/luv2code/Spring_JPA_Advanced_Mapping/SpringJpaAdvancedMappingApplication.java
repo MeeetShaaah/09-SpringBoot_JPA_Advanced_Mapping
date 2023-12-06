@@ -1,5 +1,8 @@
 package com.luv2code.Spring_JPA_Advanced_Mapping;
 
+import com.luv2code.Spring_JPA_Advanced_Mapping.Dao.AppDao;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +16,21 @@ public class SpringJpaAdvancedMappingApplication {
     }
 
     @Bean
-	public CommandLineRunner commandLineRunner(String[] args){
+	public CommandLineRunner commandLineRunner(AppDao appDao){
 		return runner-> {
-			System.out.println("Hello World...!!!");
+			createInstructor(appDao);
 		};
 	}
+
+	private void createInstructor(AppDao appDao) {
+		Instructor tempInstructor = new Instructor("Meet", "Shah", "meeshah7199@gmail.com");
+		InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
+
+		tempInstructor.setInstructorDetails(tempInstructorDetails);
+
+		System.out.println("Saving Instructor: " + tempInstructor);
+		appDao.save(tempInstructor);
+		System.out.println("Done..");
+	}
+
 }
