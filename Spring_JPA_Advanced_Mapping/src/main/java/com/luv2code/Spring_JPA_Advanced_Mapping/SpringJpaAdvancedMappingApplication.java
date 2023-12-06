@@ -18,8 +18,18 @@ public class SpringJpaAdvancedMappingApplication {
     @Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao){
 		return runner-> {
-			createInstructor(appDao);
+			/*createInstructor(appDao);*/
+
+			findInstructor(appDao);
 		};
+	}
+
+	private void findInstructor(AppDao appDao) {
+		int theId = 1;
+
+		Instructor tempInstructor = appDao.findInstructorById(theId);
+		System.out.println("Instructor  with ID " + theId + ":" + tempInstructor);
+		System.out.println("Instructor Details:" + tempInstructor.getInstructorDetails());
 	}
 
 	private void createInstructor(AppDao appDao) {
