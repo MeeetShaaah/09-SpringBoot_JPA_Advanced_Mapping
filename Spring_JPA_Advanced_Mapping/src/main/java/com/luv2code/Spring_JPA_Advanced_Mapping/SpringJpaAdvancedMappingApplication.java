@@ -18,10 +18,21 @@ public class SpringJpaAdvancedMappingApplication {
     @Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao){
 		return runner-> {
-			/*createInstructor(appDao);*/
+			/*createInstructor(appDao);
 
-			findInstructor(appDao);
+			findInstructor(appDao);*/
+
+			deleteInstructor(appDao);
 		};
+	}
+
+	private void deleteInstructor(AppDao appDao) {
+		int theId= 2;
+		System.out.println("Deleting the Instructor with Id: " + theId);
+
+		appDao.deleteInstructorById(theId);
+
+		System.out.println("Done with Deletion Process");
 	}
 
 	private void findInstructor(AppDao appDao) {
@@ -33,7 +44,7 @@ public class SpringJpaAdvancedMappingApplication {
 	}
 
 	private void createInstructor(AppDao appDao) {
-		Instructor tempInstructor = new Instructor("Meet", "Shah", "meeshah7199@gmail.com");
+		Instructor tempInstructor = new Instructor("Prexa", "Shah", "meeshah7199@gmail.com");
 		InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
 
 		tempInstructor.setInstructorDetails(tempInstructorDetails);
