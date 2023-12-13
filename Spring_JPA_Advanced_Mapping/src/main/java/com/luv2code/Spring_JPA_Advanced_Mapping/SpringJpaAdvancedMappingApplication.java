@@ -22,8 +22,18 @@ public class SpringJpaAdvancedMappingApplication {
 
 			findInstructor(appDao);*/
 
-			deleteInstructor(appDao);
+			/*deleteInstructor(appDao);*/
+
+			findInstructorDetails(appDao);
 		};
+	}
+
+	private void findInstructorDetails(AppDao appDao) {
+		int theId = 1;
+		InstructorDetails tempInstructor = appDao.findInstructorDetailsById(theId);
+		System.out.println("Instructor Details:" + tempInstructor);
+		System.out.println("Associated instructor: " + tempInstructor.getInstructor());
+		System.out.println("done...!!!");
 	}
 
 	private void deleteInstructor(AppDao appDao) {

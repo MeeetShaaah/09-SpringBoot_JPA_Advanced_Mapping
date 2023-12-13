@@ -1,6 +1,7 @@
 package com.luv2code.Spring_JPA_Advanced_Mapping.Dao;
 
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
@@ -31,5 +32,10 @@ public class AppDaoImpl implements AppDao {
     public void deleteInstructorById(int theId) {
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
         entityManager.remove(tempInstructor);
+    }
+
+    @Override
+    public InstructorDetails findInstructorDetailsById(int theId) {
+        return entityManager.find(InstructorDetails.class, theId);
     }
 }
