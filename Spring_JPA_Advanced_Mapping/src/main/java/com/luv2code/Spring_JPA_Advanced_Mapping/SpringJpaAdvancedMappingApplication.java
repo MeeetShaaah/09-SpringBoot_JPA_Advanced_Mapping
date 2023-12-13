@@ -18,14 +18,23 @@ public class SpringJpaAdvancedMappingApplication {
     @Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao){
 		return runner-> {
-			/*createInstructor(appDao);
+			/*createInstructor(appDao);*/
 
-			findInstructor(appDao);*/
+			/*findInstructor(appDao);*/
 
 			/*deleteInstructor(appDao);*/
 
-			findInstructorDetails(appDao);
+			/*findInstructorDetails(appDao);*/
+
+			deleteInstructorDetails(appDao);
 		};
+	}
+
+	private void deleteInstructorDetails(AppDao appDao) {
+		int theId=1;
+		System.out.println("Deleting the only details for: " + theId);
+		appDao.deleteInstructorDetailsById(theId);
+		System.out.println("Done with Deletion Process..");
 	}
 
 	private void findInstructorDetails(AppDao appDao) {

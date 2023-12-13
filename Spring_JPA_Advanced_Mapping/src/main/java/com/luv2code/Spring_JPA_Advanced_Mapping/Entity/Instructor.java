@@ -21,7 +21,7 @@ public class Instructor {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetails instructorDetails;
 
