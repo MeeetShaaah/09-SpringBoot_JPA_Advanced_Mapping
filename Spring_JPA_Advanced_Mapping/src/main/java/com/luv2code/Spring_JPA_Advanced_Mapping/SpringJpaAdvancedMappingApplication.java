@@ -1,6 +1,7 @@
 package com.luv2code.Spring_JPA_Advanced_Mapping;
 
 import com.luv2code.Spring_JPA_Advanced_Mapping.Dao.AppDao;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +28,29 @@ public class SpringJpaAdvancedMappingApplication {
             /*findInstructorDetails(appDao);*/
 
             /*deleteInstructorDetails(appDao);*/
+
+            createInstructorWithCourse(appDao);
         };
+    }
+
+    private void createInstructorWithCourse(AppDao appDao) {
+        Instructor tempInstructor = new Instructor("Meet", "Shah", "meeshah7199@gmail.com");
+        InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
+
+        tempInstructor.setInstructorDetails(tempInstructorDetails);
+
+        Course tempCourse1 = new Course("System Programming");
+        Course tempCourse2 = new Course("Software Engineering");
+
+        tempInstructor.add(tempCourse1);
+        tempInstructor.add(tempCourse2);
+
+        System.out.println("Instructor Created:" + tempInstructor);
+        System.out.println("Courses: " + tempInstructor.getCourses());
+        appDao.save(tempInstructor);
+
+        System.out.println("Done...!!!");
+
     }
 
     private void deleteInstructorDetails(AppDao appDao) {
@@ -63,7 +86,7 @@ public class SpringJpaAdvancedMappingApplication {
     }
 
     private void createInstructor(AppDao appDao) {
-        Instructor tempInstructor = new Instructor("Prexa", "Shah", "meeshah7199@gmail.com");
+        Instructor tempInstructor = new Instructor("Meet", "Shah", "meeshah7199@gmail.com");
         InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
 
         tempInstructor.setInstructorDetails(tempInstructorDetails);
