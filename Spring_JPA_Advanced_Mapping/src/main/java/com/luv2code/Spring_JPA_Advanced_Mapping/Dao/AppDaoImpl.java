@@ -1,10 +1,14 @@
 package com.luv2code.Spring_JPA_Advanced_Mapping.Dao;
 
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class AppDaoImpl implements AppDao {
@@ -42,8 +46,17 @@ public class AppDaoImpl implements AppDao {
     @Override
     @Transactional
     public void deleteInstructorDetailsById(int theId) {
-            InstructorDetails tempInstructorDetails = entityManager.find(InstructorDetails.class, theId);
-            tempInstructorDetails.getInstructor().setInstructorDetails(null);
-            entityManager.remove(tempInstructorDetails);
+        InstructorDetails tempInstructorDetails = entityManager.find(InstructorDetails.class, theId);
+        tempInstructorDetails.getInstructor().setInstructorDetails(null);
+        entityManager.remove(tempInstructorDetails);
+    }
+
+    @Override
+    public List<Course> findCourseByInstructorId(int theId) {
+        TypedQuery<Course> query = entityManager.createQuery("from Course where instructor.id= :data", Course.class);
+        query.setParameter("data", theId);
+        List<Course> courses = query.getResultList();
+
+        return courses;
     }
 }

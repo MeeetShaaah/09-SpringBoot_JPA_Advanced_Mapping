@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class SpringJpaAdvancedMappingApplication {
 
@@ -29,8 +31,33 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*deleteInstructorDetails(appDao);*/
 
-            createInstructorWithCourse(appDao);
+            /*createInstructorWithCourse(appDao);*/
+
+            /*findInstructorWithCourse(appDao);*/
+
+            findCoursesForInstructor(appDao);
         };
+    }
+
+    private void findCoursesForInstructor(AppDao appDao) {
+        int theId = 2;
+        System.out.println("Finding Instructor with id: " + theId);
+        Instructor tempInstructor = appDao.findInstructorById(theId);
+        System.out.println("Instructor: " + tempInstructor);
+
+        List<Course> courses = appDao.findCourseByInstructorId(theId);
+        tempInstructor.setCourses(courses);
+        System.out.println("courses are: " + tempInstructor.getCourses());
+        System.out.println("Done...");
+    }
+
+    private void findInstructorWithCourse(AppDao appDao) {
+        int theId = 2;
+        System.out.println("Finding Instructor with id: " + theId);
+        Instructor tempInstructor = appDao.findInstructorById(theId);
+        System.out.println("Instructor: " + tempInstructor);
+        System.out.println("Courses taught by the Instructor: " + tempInstructor.getCourses());
+        System.out.println("Done With Finding Procedure...");
     }
 
     private void createInstructorWithCourse(AppDao appDao) {

@@ -28,7 +28,9 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetails instructorDetails;
 
-    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "instructor",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 
     public Instructor() {
@@ -95,12 +97,14 @@ public class Instructor {
 
     // add convenience method for bidirectional relationship
 
-    public void add(Course tempCourse){
-        if(courses == null){
+    public void add(Course tempCourse) {
+        if (courses == null) {
             courses = new ArrayList<>();
         }
         courses.add(tempCourse);
 
         tempCourse.setInstructor(this);
     }
+
+
 }
