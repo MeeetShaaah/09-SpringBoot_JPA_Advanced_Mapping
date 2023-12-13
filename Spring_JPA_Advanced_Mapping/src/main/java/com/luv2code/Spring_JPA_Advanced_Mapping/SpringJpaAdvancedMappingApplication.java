@@ -16,61 +16,61 @@ public class SpringJpaAdvancedMappingApplication {
     }
 
     @Bean
-	public CommandLineRunner commandLineRunner(AppDao appDao){
-		return runner-> {
-			/*createInstructor(appDao);*/
+    public CommandLineRunner commandLineRunner(AppDao appDao) {
+        return runner -> {
+            /*createInstructor(appDao);*/
 
-			/*findInstructor(appDao);*/
+            /*findInstructor(appDao);*/
 
-			/*deleteInstructor(appDao);*/
+            /*deleteInstructor(appDao);*/
 
-			/*findInstructorDetails(appDao);*/
+            /*findInstructorDetails(appDao);*/
 
-			deleteInstructorDetails(appDao);
-		};
-	}
+            /*deleteInstructorDetails(appDao);*/
+        };
+    }
 
-	private void deleteInstructorDetails(AppDao appDao) {
-		int theId=1;
-		System.out.println("Deleting the only details for: " + theId);
-		appDao.deleteInstructorDetailsById(theId);
-		System.out.println("Done with Deletion Process..");
-	}
+    private void deleteInstructorDetails(AppDao appDao) {
+        int theId = 1;
+        System.out.println("Deleting the only details for: " + theId);
+        appDao.deleteInstructorDetailsById(theId);
+        System.out.println("Done with Deletion Process..");
+    }
 
-	private void findInstructorDetails(AppDao appDao) {
-		int theId = 1;
-		InstructorDetails tempInstructor = appDao.findInstructorDetailsById(theId);
-		System.out.println("Instructor Details:" + tempInstructor);
-		System.out.println("Associated instructor: " + tempInstructor.getInstructor());
-		System.out.println("done...!!!");
-	}
+    private void findInstructorDetails(AppDao appDao) {
+        int theId = 1;
+        InstructorDetails tempInstructor = appDao.findInstructorDetailsById(theId);
+        System.out.println("Instructor Details:" + tempInstructor);
+        System.out.println("Associated instructor: " + tempInstructor.getInstructor());
+        System.out.println("done...!!!");
+    }
 
-	private void deleteInstructor(AppDao appDao) {
-		int theId= 2;
-		System.out.println("Deleting the Instructor with Id: " + theId);
+    private void deleteInstructor(AppDao appDao) {
+        int theId = 2;
+        System.out.println("Deleting the Instructor with Id: " + theId);
 
-		appDao.deleteInstructorById(theId);
+        appDao.deleteInstructorById(theId);
 
-		System.out.println("Done with Deletion Process");
-	}
+        System.out.println("Done with Deletion Process");
+    }
 
-	private void findInstructor(AppDao appDao) {
-		int theId = 1;
+    private void findInstructor(AppDao appDao) {
+        int theId = 1;
 
-		Instructor tempInstructor = appDao.findInstructorById(theId);
-		System.out.println("Instructor  with ID " + theId + ":" + tempInstructor);
-		System.out.println("Instructor Details:" + tempInstructor.getInstructorDetails());
-	}
+        Instructor tempInstructor = appDao.findInstructorById(theId);
+        System.out.println("Instructor  with ID " + theId + ":" + tempInstructor);
+        System.out.println("Instructor Details:" + tempInstructor.getInstructorDetails());
+    }
 
-	private void createInstructor(AppDao appDao) {
-		Instructor tempInstructor = new Instructor("Prexa", "Shah", "meeshah7199@gmail.com");
-		InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
+    private void createInstructor(AppDao appDao) {
+        Instructor tempInstructor = new Instructor("Prexa", "Shah", "meeshah7199@gmail.com");
+        InstructorDetails tempInstructorDetails = new InstructorDetails("http://www.meetshah.com", "Singing");
 
-		tempInstructor.setInstructorDetails(tempInstructorDetails);
+        tempInstructor.setInstructorDetails(tempInstructorDetails);
 
-		System.out.println("Saving Instructor: " + tempInstructor);
-		appDao.save(tempInstructor);
-		System.out.println("Done..");
-	}
+        System.out.println("Saving Instructor: " + tempInstructor);
+        appDao.save(tempInstructor);
+        System.out.println("Done..");
+    }
 
 }

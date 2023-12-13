@@ -3,19 +3,19 @@ package com.luv2code.Spring_JPA_Advanced_Mapping.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="instructor_detail")
+@Table(name = "instructor_detail")
 public class InstructorDetails {
 
     /*Defining Fields*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name="youtube_channel")
+    @Column(name = "youtube_channel")
     private String youtubeChannel;
 
-    @Column(name="hobby")
+    @Column(name = "hobby")
     private String hobby;
 
     @OneToOne(mappedBy = "instructorDetails", cascade = CascadeType.ALL)
