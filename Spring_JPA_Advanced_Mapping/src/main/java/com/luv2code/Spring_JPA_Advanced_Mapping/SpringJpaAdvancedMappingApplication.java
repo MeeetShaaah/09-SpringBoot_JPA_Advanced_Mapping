@@ -35,8 +35,27 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*findInstructorWithCourse(appDao);*/
 
-            findCoursesForInstructor(appDao);
+            /*findCoursesForInstructor(appDao);*/
+
+            /*updateInstructor(appDao);*/
+
+            updateCourse(appDao);
         };
+    }
+
+    private void updateCourse(AppDao appDao) {
+        int theId=10;
+        Course tempCourse  = appDao.findCourseById(theId);
+        tempCourse.setTitle("Machine Learning");
+        appDao.updateTheCourse(tempCourse);
+    }
+
+    private void updateInstructor(AppDao appDao) {
+        int theId= 2;
+        Instructor tempInstructor = appDao.findInstructorById(theId);
+        tempInstructor.setLastName("Patel");
+        appDao.update(tempInstructor);
+        System.out.println("Done...");
     }
 
     private void findCoursesForInstructor(AppDao appDao) {
