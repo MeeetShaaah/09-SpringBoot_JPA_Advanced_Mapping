@@ -18,6 +18,10 @@ public class InstructorDetails {
     @Column(name="hobby")
     private String hobby;
 
+    @OneToOne(mappedBy = "instructorDetails")
+    private Instructor instructor;
+
+
     /*Generating Constructor*/
     public InstructorDetails() {
     }
@@ -50,6 +54,14 @@ public class InstructorDetails {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     /*Generate toString Method*/
