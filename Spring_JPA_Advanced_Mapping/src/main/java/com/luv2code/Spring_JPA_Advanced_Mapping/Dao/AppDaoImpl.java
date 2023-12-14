@@ -4,6 +4,7 @@ import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
@@ -82,4 +83,14 @@ public class AppDaoImpl implements AppDao {
     public void save(Course theCourse) {
         entityManager.persist(theCourse);
     }
+
+    @Override
+    public Course findCourseAndReviewsByCourseId(int theId) {
+
+        TypedQuery<Course> query = entityManager.createQuery("select c from Course c " + "JOIN FETCH c.review " + "where c.id = :data", Course.class);
+        query.setParameter("data", theId);
+        Course course = query.getSingleResult();
+        return course;
+    }
+
 }

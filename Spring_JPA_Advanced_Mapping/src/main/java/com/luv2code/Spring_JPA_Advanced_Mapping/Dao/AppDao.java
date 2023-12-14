@@ -17,4 +17,5 @@ public interface AppDao {
     void updateTheCourse(Course tempCourse);
     Course findCourseById(int theid);
     void save(Course theCourse);
+    Course findCourseAndReviewsByCourseId(int theId);
 }

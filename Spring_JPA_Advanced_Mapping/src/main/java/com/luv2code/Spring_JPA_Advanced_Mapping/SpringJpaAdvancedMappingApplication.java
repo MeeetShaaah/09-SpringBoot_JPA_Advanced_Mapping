@@ -42,8 +42,25 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*updateCourse(appDao);*/
 
-            createCourseAndReviews(appDao);
+            /*createCourseAndReviews(appDao);*/
+
+            /*retrieveCourseAndReviewsBy(appDao);*/
+
+            /*deleteCourseAndReviews(appDao);*/
         };
+    }
+
+    private void deleteCourseAndReviews(AppDao appDao) {
+        int theId = 10;
+        //appDao.deleteCourseById(theId);
+    }
+
+    private void retrieveCourseAndReviewsBy(AppDao appDao) {
+        int theId = 10;
+        Course tempCourse = appDao.findCourseAndReviewsByCourseId(theId);
+        System.out.println(tempCourse);
+        System.out.println(tempCourse.getReview());
+        System.out.println("Done...");
     }
 
     private void createCourseAndReviews(AppDao appDao) {
