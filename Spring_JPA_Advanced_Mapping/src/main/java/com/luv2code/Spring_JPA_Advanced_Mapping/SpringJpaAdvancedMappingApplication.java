@@ -4,6 +4,7 @@ import com.luv2code.Spring_JPA_Advanced_Mapping.Dao.AppDao;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,19 +40,32 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*updateInstructor(appDao);*/
 
-            updateCourse(appDao);
+            /*updateCourse(appDao);*/
+
+            createCourseAndReviews(appDao);
         };
     }
 
+    private void createCourseAndReviews(AppDao appDao) {
+        Course tempCourse = new Course("Artificial Intelligence");
+        tempCourse.addReviews(new Review("This is the great course to learn."));
+        tempCourse.addReviews(new Review("This is the great course to learn and you will get best of the machine learning knowledge."));
+        tempCourse.addReviews(new Review("nice one..."));
+        tempCourse.addReviews(new Review("Instructor is Good and supportive."));
+
+        appDao.save(tempCourse);
+        System.out.println("Done...");
+    }
+
     private void updateCourse(AppDao appDao) {
-        int theId=10;
-        Course tempCourse  = appDao.findCourseById(theId);
+        int theId = 10;
+        Course tempCourse = appDao.findCourseById(theId);
         tempCourse.setTitle("Machine Learning");
         appDao.updateTheCourse(tempCourse);
     }
 
     private void updateInstructor(AppDao appDao) {
-        int theId= 2;
+        int theId = 2;
         Instructor tempInstructor = appDao.findInstructorById(theId);
         tempInstructor.setLastName("Patel");
         appDao.update(tempInstructor);
