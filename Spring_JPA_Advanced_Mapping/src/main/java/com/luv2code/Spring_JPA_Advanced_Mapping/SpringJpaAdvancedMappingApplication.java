@@ -1,10 +1,7 @@
 package com.luv2code.Spring_JPA_Advanced_Mapping;
 
 import com.luv2code.Spring_JPA_Advanced_Mapping.Dao.AppDao;
-import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
-import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
-import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
-import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Review;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -47,7 +44,39 @@ public class SpringJpaAdvancedMappingApplication {
             /*retrieveCourseAndReviewsBy(appDao);*/
 
             /*deleteCourseAndReviews(appDao);*/
+
+            /*createCourseAndStudent(appDao);*/
+
+            findCoursesAndStudents(appDao);
         };
+    }
+
+    private void findCoursesAndStudents(AppDao appDao) {
+        int theId = 10;
+        Course tempCourse = appDao.findCourseAndStudentByCourseId(theId);
+        System.out.println("Loaded Course: " + tempCourse);
+        System.out.println("Students: "+tempCourse.getStudents());
+
+        System.out.println("Done...");
+    }
+
+    private void createCourseAndStudent(AppDao appDao) {
+        Course tempCourse = new Course("Big Data");
+        Student tempStudent = new Student("Meet", "Shah", "meetshah7199@gmail.com");
+        Student tempStudent1 = new Student("Meet", "Shah", "meetshah7199@gmail.com");
+        Student tempStudent2 = new Student("Prexa", "Shah", "prexashah7199@gmail.com");
+        Student tempStudent3 = new Student("kunj", "Shah", "kunjshah7199@gmail.com");
+
+        tempCourse.addStudent(tempStudent1);
+        tempCourse.addStudent(tempStudent2);
+        tempCourse.addStudent(tempStudent3);
+
+        System.out.println("Saving the Course: " + tempStudent);
+        System.out.println("Associated Student:" + tempStudent.getCourses());
+
+        appDao.save(tempCourse);
+
+        System.out.println("Done...");
     }
 
     private void deleteCourseAndReviews(AppDao appDao) {
