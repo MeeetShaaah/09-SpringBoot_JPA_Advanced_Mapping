@@ -47,15 +47,45 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*createCourseAndStudent(appDao);*/
 
-            findCoursesAndStudents(appDao);
+            /*findCoursesAndStudents(appDao);*/
+
+            /*findStudentAndCourse(appDao);*/
+
+            addMoreCoursesForStudent(appDao);
         };
+    }
+
+    private void addMoreCoursesForStudent(AppDao appDao) {
+        int theId = 1;
+
+        Student tempStudent = appDao.findCourseAndStudentByStudentId(theId);
+        Course tempCourse1 = new Course("Software Development");
+        Course tempCourse2 = new Course("Learn Java");
+        Course tempCourse3 = new Course("Mobile Development");
+
+        tempStudent.addCourse(tempCourse1);
+        tempStudent.addCourse(tempCourse2);
+        tempStudent.addCourse(tempCourse3);
+
+        appDao.update(tempStudent);
+
+        System.out.println("Done With Update.");
+    }
+
+    private void findStudentAndCourse(AppDao appDao) {
+        int theId = 1;
+        Student tempStudent = appDao.findCourseAndStudentByStudentId(theId);
+        System.out.println("Loaded Course: " + tempStudent);
+        System.out.println("Students: " + tempStudent.getCourses());
+
+        System.out.println("Done...");
     }
 
     private void findCoursesAndStudents(AppDao appDao) {
         int theId = 10;
         Course tempCourse = appDao.findCourseAndStudentByCourseId(theId);
         System.out.println("Loaded Course: " + tempCourse);
-        System.out.println("Students: "+tempCourse.getStudents());
+        System.out.println("Students: " + tempCourse.getStudents());
 
         System.out.println("Done...");
     }

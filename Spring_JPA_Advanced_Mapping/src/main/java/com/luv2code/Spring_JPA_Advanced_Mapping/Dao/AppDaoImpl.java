@@ -3,6 +3,7 @@ package com.luv2code.Spring_JPA_Advanced_Mapping.Dao;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -101,5 +102,20 @@ public class AppDaoImpl implements AppDao {
         Course course = query.getSingleResult();
 
         return course;
+    }
+
+    @Override
+    public Student findCourseAndStudentByStudentId(int theId) {
+        TypedQuery<Student> query = entityManager.createQuery("select s from Student s " + "JOIN FETCH s.courses " + "where s.id = :data", Student.class);
+        query.setParameter("data", theId);
+
+        Student student = query.getSingleResult();
+        return student;
+    }
+
+    @Override
+    @Transactional
+    public void update(Student tempStudent) {
+        entityManager.merge(tempStudent);
     }
 }

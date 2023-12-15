@@ -3,6 +3,7 @@ package com.luv2code.Spring_JPA_Advanced_Mapping.Dao;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Course;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Instructor;
 import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.InstructorDetails;
+import com.luv2code.Spring_JPA_Advanced_Mapping.Entity.Student;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface AppDao {
     void save(Course theCourse);
     Course findCourseAndReviewsByCourseId(int theId);
     Course findCourseAndStudentByCourseId(int theId);
+    Student findCourseAndStudentByStudentId(int theId);
+
+    void update(Student tempStudent);
 }
