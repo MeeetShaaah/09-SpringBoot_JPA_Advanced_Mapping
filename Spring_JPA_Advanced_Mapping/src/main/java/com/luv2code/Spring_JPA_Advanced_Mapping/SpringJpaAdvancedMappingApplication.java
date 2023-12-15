@@ -51,8 +51,21 @@ public class SpringJpaAdvancedMappingApplication {
 
             /*findStudentAndCourse(appDao);*/
 
-            addMoreCoursesForStudent(appDao);
+            /*addMoreCoursesForStudent(appDao);*/
+            
+            deleteStudent(appDao);
         };
+    }
+
+    private void deleteStudent(AppDao appDao) {
+        int theId = 1;
+
+        appDao.deleteStudentById(theId);
+
+        System.out.println("Done...");
+    }
+
+    private void deleteCourseForStudent(AppDao appDao) {
     }
 
     private void addMoreCoursesForStudent(AppDao appDao) {
